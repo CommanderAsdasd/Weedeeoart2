@@ -6,20 +6,35 @@ from moviepy.editor import *
 import moviepy.video.fx.all as mpfx
 import sys, random, time
 import ipdb
-
+import glob
+import os
 
 def invert_green_blue(image):
-    return image[:,:,[0,2,1]]
+    # ipdb.set_trace()
+    return image[:,:,:]
 # Load myHolidays.mp4 and select the subclip 00:00:50 - 00:00:60
 clipOut = []
-for times in range(10):
-    wed_len = random.uniform(0.01,0.1)
-    clip = VideoFileClip(sys.argv[1])
+
+
+
+# for times in range(10):
+# with open() 
+path_mp4 = glob.glob('{}*mp4'.format(sys.argv[1]))
+# path_avi = 'sys.argv[1]{}'.format(glob.glob('*avi'))
+
+# for path in paths
+
+for clip in path_mp4[::10]:
+    wed_len = random.uniform(0.4,1)
+    clip = VideoFileClip(os.path.realpath(clip))
     start = random.uniform(0,int(clip.duration))
     end = start + wed_len
     while end > clip.duration:
         end = clip.duration - (start + wed_len)
-    clip = clip.subclip(start,end)
+    try:
+        clip = clip.subclip(start,end)
+    except OSError as OSe:
+        print(OSe) 
     clipOut.append(clip)
 
 for i in range(6):
@@ -45,4 +60,4 @@ video = CompositeVideoClip([concatenate_videoclips(clipOut)])
 
 # Write the result to a file (many options available !)
 date = time.strftime("%I%M%S")
-video.write_videofile("output/intro{}.mp4".format(date))
+video.write_videofile("output/weedeeo_output{}.mp4".format(date))
