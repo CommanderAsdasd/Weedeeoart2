@@ -1,7 +1,7 @@
 from moviepy.editor import *
 import math
 
-comprehensions_set = {}
+templates = {}
 
 def scroll(get_frame, t):
     """
@@ -22,6 +22,9 @@ def speedx_sync(clip, speed):
     return new_clip
 
 
+sas_maker = lambda count, clip : vfx.time_mirror 
+
+
 speed_reversing = lambda count, clip : speedx_sync(clip, 0.9) \
                         if count % 2 == 0 else \
                         (clip.fl(scroll).fx(vfx.time_mirror) \
@@ -30,4 +33,5 @@ speed_reversing = lambda count, clip : speedx_sync(clip, 0.9) \
 
 stutter = lambda length, clip: clip.subclip()
 
-comprehensions_set["speed_reversing"] = speed_reversing
+templates["speed_reversing"] = speed_reversing
+templates["sas_maker"] = sas_maker

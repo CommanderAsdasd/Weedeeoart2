@@ -26,8 +26,7 @@ def random_sequence(length, file_length):
     return (startPoint, startPoint+length)
     # translate()
 
-def no_extension(filename: str) -> str:
-
-    return filename.split(".")[-2]
+def no_extension(filename: str) -> str:    
+    return filename.split("/")[-1].split(".")[-1]
     
 

@@ -3,6 +3,7 @@ from moviepy.editor import *
 import ipdb
 import random
 import datetime
+from weedeeo import *
 # from scipy import ndimage
 # from scipy import misc
 # f = misc.face()
@@ -13,10 +14,10 @@ import datetime
 # plt.show()
 
 # Load myHolidays.mp4 and select the subclip 00:00:50 - 00:00:60
-clip = VideoFileClip(sys.argv[1]).subclip(500,510)
+clip = VideoFileClip(sys.argv[1]).subclip(500,501)
 
 # Reduce the audio volume (volume x 0.8)
-clip = clip.volumex(0.8)
+# clip = clip.volumex(0.8)
 
 # Generate a text clip. You can customize the font, color, etc.
 # breakpoint()
@@ -52,4 +53,4 @@ modifiedClip = clip.fl_image( invert_green_blue )
 video = CompositeVideoClip([modifiedClip])
 
 # Write the result to a file (many options available !)
-video.write_videofile(f"../../output/myHolidays_edited{datetime.date.today()}.mp4")
+video.write_videofile(f"../../output/{sys.argv[0]}_{datetime.date.today()}.mp4")

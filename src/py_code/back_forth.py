@@ -21,11 +21,10 @@ for video_path in sys.argv[1:]:
     # clips.append(clip.resize(max_size[0],max_size[1]))
     clips.append(VideoFileClip(video_path))
 
-uni = lambda low, up: random.uniform(low, up)
-choice = lambda x: random.choice(x)
+
 
 clip_count = 10
-cutting_function = lambda counter, clip: clip.subclip(*random_sequence(choice([uni(0,2),uni(3,5),uni(0.01, 0.1)]), clip.duration))
+cutting_function = lambda counter, clip: clip.subclip(*random_sequence(choice([uni(0,2),uni(1,3),uni(0.01, 0.1, count=10)]), clip.duration))
 clips_cut = [cutting_function(counter, clip) for counter, clip in enumerate(clips * clip_count) ]
 
 class part():
@@ -40,4 +39,5 @@ generating_function = templates["sas_maker"]
 # clips = list(map(sas_maker, enumerate(clips)))
 clips_cut_fx = [ generating_function(counter, clip) for counter, clip in enumerate(clips_cut) ]
 video = concatenate_videoclips(clips_cut_fx, method="compose")
-video.write_videofile("./output/{}-{}.mp4".format(no_extension(sys.argv[1])+no_extension(sys.argv[2]), file_timestamp()))
+name = "_".join([no_extension(sys.argv[i]) for i, video_path in enumerate(sys.argv)])
+video.write_videofile("./output/{}-{}.mp4".format(name, file_timestamp()))

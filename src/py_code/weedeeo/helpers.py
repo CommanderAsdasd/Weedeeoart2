@@ -2,6 +2,9 @@ from datetime import datetime
 import sys
 import random
 
+uni = lambda low, up, count=1: random.uniform(low, up) if count == 1 else [random.uniform(low, up) for i in range(count)]
+choice = lambda x, count=1: random.choice(x) if count == 1 else [random.choice(x) for i in range(count)]
+
 def input_data(file=sys.argv[1]):
     
     print(file)
@@ -25,6 +28,7 @@ def file_timestamp():
     return timestampStr
 
 def random_sequence(length, file_length):
+    
     
     startPoint = file_length - length
     startPoint = random.uniform(0,startPoint)
