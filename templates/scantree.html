@@ -1,0 +1,8 @@
+<!doctype html>
+<title>Hello from Flask</title>
+{% if result %}
+<h1>Files found</h1>
+  <p>{% for i in result %}
+      <a href="{{i}}">{{i}}</a> <br>
+       {% endfor %}</p>
+{% endif %}
