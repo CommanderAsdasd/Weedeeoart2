@@ -29,7 +29,9 @@ def file_timestamp():
 
 def random_sequence(length, file_length):
     
-    
+    # print(type(length), type(file_length))
+    # if (length is list):
+    #     length = length[0]
     startPoint = file_length - length
     startPoint = random.uniform(0,startPoint)
     return (startPoint, startPoint+length)
@@ -40,4 +42,5 @@ def no_extension(filename: str) -> str:
     return filename.split("/")[-1].split(".")[-1]
 
     
-
+cutting_function = lambda counter, clip: clip.subclip(*random_sequence(choice([0.01,0.02,0.03,0.001]), clip.duration))
+cutting_function_2 = lambda counter, clip: clip.subclip(*random_sequence(choice([0.3] * 3 + [0.1,0.5,0.7,3,4]), clip.duration))
