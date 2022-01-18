@@ -5,9 +5,9 @@ import random
 uni = lambda low, up, count=1: random.uniform(low, up) if count == 1 else [random.uniform(low, up) for i in range(count)]
 choice = lambda x, count=1: random.choice(x) if count == 1 else [random.choice(x) for i in range(count)]
 
-def input_data(file=sys.argv[1]):
-    
+def input_data(file):    
     print(file)
+    
 
 def translate(value, leftMin, leftMax, rightMin, rightMax):
     # Figure out how 'wide' each range is

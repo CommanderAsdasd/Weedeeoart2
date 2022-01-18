@@ -1,6 +1,6 @@
 from moviepy.editor import *
 import random
-import mido
+# import mido
 
 class VideoFileClip(VideoFileClip):
 
